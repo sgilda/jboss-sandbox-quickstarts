@@ -1,8 +1,8 @@
-tasks-rs: JAX-RS, JPA quickstart
+tasks-angularjs: AngularJS, JAX-RS, JPA quickstart
 ==============================
-Author: Pete Muir, Mike Musgrove
+Author: Pete Muir, Mike Musgrove, Wes Bos
 Level: Intermediate
-Technologies: JPA, JAX-RS
+Technologies: AngularJS, JPA, JAX-RS
 Summary: Demonstrates how to use JAX-RS and JPA together
 Prerequisites: tasks
 Target Product: EAP
@@ -11,7 +11,7 @@ Source: <https://github.com/jboss-jdf/jboss-as-quickstart/>
 What is it?
 -----------
 
-This project demonstrates how to implement a JAX-RS service that uses JPA 2.0 persistence.
+This project demonstrates how to implement a JAX-RS service that uses JPA 2.0 persistence. This project also demonstrates how to front-end the service using AngularJS.
 
 * The client uses HTTP to interact with the service. It builds on the *tasks* quickstarts which provide simple Task management with secure login.
 
@@ -62,13 +62,13 @@ _NOTE: The following build command assumes you have configured your Maven user s
 
         mvn clean package jboss-as:deploy
 
-4. This will deploy `target/jboss-as-tasks-angluarjs.war` to the running instance of the server.
+4. This will deploy `target/jboss-tasks-angularjs.war` to the running instance of the server.
 
 
 Access the Application Resources
 ---------------------
 
-Application resources for this quickstart are prefixed with the URL http://localhost:8080/jboss-as-tasks-angluarjs/ and can be accessed by an HTTP client.
+Application resources for this quickstart are prefixed with the URL http://localhost:8080/jboss-tasks-angularjs/ and can be accessed by an HTTP client.
 
 * For methods that accept *GET*, a web browser can be used.
 * Otherwise, you must use cURL or some other command line tool that supports HTTP *POST* and *DELETE* methods.
@@ -77,17 +77,17 @@ Below you will find instructions to create, display, and delete tasks.
 
 ### Create a Task
 
-To associate a task called `task1` with the user `quickstartUser`, you must authenticate as user `quickstartUser` and send an HTTP *POST* request to the url 'http://localhost:8080/jboss-as-tasks-angluarjs/tasks/task1'.
+To associate a task called `task1` with the user `quickstartUser`, you must authenticate as user `quickstartUser` and send an HTTP *POST* request to the url 'http://localhost:8080/jboss-tasks-angularjs/tasks/task1'.
 
 To issue the *POST* command using cURL, type the following command:
 
-    curl -i -u 'quickstartUser:quickstartPwd1!' -H "Content-Length: 0" -X POST http://localhost:8080/jboss-as-tasks-angluarjs/tasks/task1
+    curl -i -u 'quickstartUser:quickstartPwd1!' -H "Content-Length: 0" -X POST http://localhost:8080/jboss-tasks-angularjs/tasks/task1
 
 You will see the following response:
 
     HTTP/1.1 201 Created
     Server: Apache-Coyote/1.1
-    Location: http://localhost:8080/jboss-as-tasks-angluarjs/tasks/1
+    Location: http://localhost:8080/jboss-tasks-angularjs/tasks/1
     Content-Length: 0
     Date: Sun, 15 Apr 2012 22:46:26 GMT
 
@@ -99,7 +99,7 @@ This is what happens when the command is issued:
 * The `-X` flag tells cURL which HTTP method to use. The HTTP *POST* is used to create resources.
 * The `Location` header of the response contains the URI of the resource representing the newly created task.
 
-The final argument to cURL determines the title of the task. Note that this approach is perhaps not very restful but it simplifies this quickstart. A better approach would be to *POST* to "http://localhost:8080/jboss-as-tasks-angluarjs/tasks" passing the task title in the body of the request.
+The final argument to cURL determines the title of the task. Note that this approach is perhaps not very restful but it simplifies this quickstart. A better approach would be to *POST* to "http://localhost:8080/jboss-tasks-angularjs/tasks" passing the task title in the body of the request.
 
 
 ### Display the XML Representation of a Task
@@ -108,10 +108,10 @@ To display the XML representation of the newly created resource, issue a *GET* r
 
 1. To issue a *GET* using a browser, open a browser and access the URI. You will be challenged to enter valid authentication credentials.
 
-    <http://localhost:8080/jboss-as-tasks-angluarjs/tasks/1>
+    <http://localhost:8080/jboss-tasks-angularjs/tasks/1>
 2. To issue a *GET* using cURL, type the following command:
 
-        curl -H "Accept: application/xml" -u 'quickstartUser:quickstartPwd1!' -X GET http://localhost:8080/jboss-as-tasks-angluarjs/tasks/1
+        curl -H "Accept: application/xml" -u 'quickstartUser:quickstartPwd1!' -X GET http://localhost:8080/jboss-tasks-angularjs/tasks/1
 
     The `-H flag tells the server that the client wishes to accept XML content.
 
@@ -129,11 +129,11 @@ To obtain a list of all tasks for user `quickstartUser` in XML format, authentic
 
 1. To issue a *GET* using a browser, open a browser and access the following URL. You will be challenged to enter valid authentication credentials.
 
-    <http://localhost:8080/jboss-as-tasks-angluarjs/tasks>
+    <http://localhost:8080/jboss-tasks-angularjs/tasks>
 
 2. To list all tasks associated with the user `quickstartUser` using cURL, type:
 
-        curl -H "Accept: application/xml" -u 'quickstartUser:quickstartPwd1!' -X GET http://localhost:8080/jboss-as-tasks-angluarjs/tasks
+        curl -H "Accept: application/xml" -u 'quickstartUser:quickstartPwd1!' -X GET http://localhost:8080/jboss-tasks-angularjs/tasks
 
 Using either of the above *GET* methods, you should see the following XML:
 
@@ -150,7 +150,7 @@ To delete a task, again authenticate as principal `quickstartUser` and send an H
 
 To delete the task with id `1`:
 
-    curl -i -u 'quickstartUser:quickstartPwd1!' -X DELETE http://localhost:8080/jboss-as-tasks-angluarjs/tasks/1
+    curl -i -u 'quickstartUser:quickstartPwd1!' -X DELETE http://localhost:8080/jboss-tasks-angularjs/tasks/1
 
 You will see this response:
 
@@ -163,7 +163,7 @@ You will see this response:
 
 Now list all tasks associated with user `quickstartUser`:
 
-    curl -u 'quickstartUser:quickstartPwd1!' -X GET http://localhost:8080/jboss-as-tasks-angluarjs/tasks
+    curl -u 'quickstartUser:quickstartPwd1!' -X GET http://localhost:8080/jboss-tasks-angularjs/tasks
 
 You will see a response with an empty collection:
 
@@ -206,7 +206,7 @@ JSON is not part of the JAX-RS standard but most JAX-RS implementations do suppo
 
 Now you can view task resources in JSON media type by specifying the correct Accept header. For example, using the cURL tool, type the following command:
 
-    curl -H "Accept: application/json" -u 'quickstartUser:quickstartPwd1!' -X GET http://localhost:8080/jboss-as-tasks-angluarjs/tasks/1
+    curl -H "Accept: application/json" -u 'quickstartUser:quickstartPwd1!' -X GET http://localhost:8080/jboss-tasks-angularjs/tasks/1
 
 You will see the following response:
 
