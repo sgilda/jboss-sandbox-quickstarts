@@ -41,8 +41,7 @@
         <version.jboss.bom.eap>6.2.0-build-7</version.jboss.bom.eap> 
 
         <version.org.jboss.spec.javax.websocket>1.0.0.Beta1</version.org.jboss.spec.javax.websocket>
-        <version.org.jboss.web>7.4.1.Final</version.org.jboss.web>
-        <version.javaee.web.api>6.0</version.javaee.web.api>
+         <version.javaee.web.api>6.0</version.javaee.web.api>
  
         <!-- other plugin versions -->
         <version.war.plugin>2.1.1</version.war.plugin>
@@ -96,14 +95,6 @@
             <version>${version.org.jboss.spec.javax.websocket}</version>
             <scope>provided</scope>
         </dependency>
-
-        <dependency>
-            <groupId>org.jboss.web</groupId>
-            <artifactId>jbossweb</artifactId>
-            <version>${version.org.jboss.web}</version>
-            <scope>provided</scope>
-        </dependency>
-
     </dependencies>
 
     <build>
